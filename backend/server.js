@@ -5,14 +5,19 @@ import router from './routes/auth.routes.js';
 import connectToMongoDB from './db/connectToMongoDB.js';
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+
 dotenv.config();
 
-const PORT = process.env.PORT || 5000;
-app.get("/", (req,res) => {
-    res.send("Hello world")
-});
+app.use(express.json());
 
-app.use("/api/auth", router);   
+app.use("/api/auth", router);
+
+//app.get("/", (req,res) => {
+//    res.send("Hello world")
+//});
+
+   
 
 app.listen(PORT,() => {
     connectToMongoDB();

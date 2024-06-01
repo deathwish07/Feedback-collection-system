@@ -6,21 +6,21 @@ import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import { useAuthContext } from "./context/authContext.jsx";
+import { Toaster } from "react-hot-toast";
 
 function App() {
-  const {authUser} = useAuthContext();
+  const { authUser } = useAuthContext();
   return (
-    <>
-      
-        <Navbar />
-        <Routes>
-          <Route path="/" element={authUser ? <Home /> : <Navigate to={"/login"}/> } />
-          {/* <Route path="/my-feedback" element={<MyFeedback />} /> */}
-          <Route path="/login" element={authUser? <Navigate to="/"/> : <Login />} />
-          <Route path="/register" element={authUser? <Navigate to="/"/> : <Register />} />
-        </Routes>
-      
-    </>
+    <div>
+
+      <Navbar />
+      <Routes>
+        <Route path="/" element={authUser ? <Home /> : <Navigate to={"/login"} />} />
+        <Route path="/login" element={authUser ? <Navigate to="/" /> : <Login />} />
+        <Route path="/register" element={authUser ? <Navigate to="/" /> : <Register />} />
+      </Routes>
+      <Toaster/>
+    </div>
   );
 }
 

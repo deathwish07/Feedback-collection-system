@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
 
 const formSchema = new mongoose.Schema({
-    userID:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+    user:{
+        type: String,
         required: true
     },
     que1: {
@@ -28,3 +27,7 @@ const formSchema = new mongoose.Schema({
     }
 
 });
+
+const form = mongoose.model("form", formSchema)
+
+export default form;

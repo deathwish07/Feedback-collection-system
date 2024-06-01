@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import form from "../models/form.model.js";
 import bcrypt from "bcryptjs";
 import generateTokenAndSetCookie from "../utils/generateToken.js";
 import { configDotenv } from "dotenv";
@@ -9,12 +10,6 @@ export const signup = async(req,res) => {
 
         if (password !== confirmPassword) {
             return res.status(400).json({error:"Passwords dont match"})
-        }
-
-        const user = await User.findOne({email});
-
-        if(user) {
-            return res.status(400).json({error:"User already exists with the given email"})
         }
 
         //hashing password
@@ -80,3 +75,38 @@ export const logout = (req,res) => {
         res.status(500).json({error:"Internal server error"});   
     }
 };
+
+export const formstats = async(req,res) => {
+    try {
+        const {user, que1, que2, que3, que4, que5} = req.body;
+
+        const formdata = new form({
+            user,
+            que1,
+            que2,
+            que3,
+            que4,
+            que5
+        })
+
+
+        if (formdata) {
+            await formdata.save();
+
+            res.status(201).json({
+                _id: formdata._id,
+                user: formdata.user,
+                que1: formdata.que1,
+                que2: formdata.que2,
+                que3: formdata.que3,
+                que4: formdata.que4,
+                que5: formdata.que5,
+            })
+        } else {
+            res.status(400).json({error: "Invalid form data"})
+        }
+    } catch (error) {
+        console.log("Error in form controller", error.message);
+        res.status(500).json({error:"Internal server error"});   
+    }
+}

@@ -50,9 +50,6 @@ const Navbar = () => {
               <li>
                 <Link to="/">Feedback</Link>
               </li>
-              <li>
-                <Link to="/my-feedback">My Feedback</Link>
-              </li>
             </ul>
           </div>
           <div className="navbar-end">

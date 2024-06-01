@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LogoutButton from "./logoutButton";
 
 const Navbar = () => {
   return (
@@ -55,7 +56,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="navbar-end">
-            <Link to="/login">Login</Link>
+            <LogoutButton/>
           </div>
         </div>
       </div>

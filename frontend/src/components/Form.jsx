@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import useForm from "../../hooks/useForm";
 import toast from 'react-hot-toast'
 
 
@@ -20,7 +19,7 @@ const Form = () => {
   const [que4, setque4] = useState();
   const [que5, setque5] = useState();
 
-  const { loading, form } = useForm()
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!localStorage.getItem("formfill")) {

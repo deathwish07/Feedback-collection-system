@@ -18,6 +18,7 @@ const useLogout = () => {
 			}
 
 			localStorage.removeItem("authUser");
+			localStorage.removeItem("formfill");
 			setAuthUser(null);
 		} catch (error) {
 			toast.error(error.message);
